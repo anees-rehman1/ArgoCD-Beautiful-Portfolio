@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- deployment.yaml
+- service.yaml
+- ingress.yaml
+
+images:
+- name: shadow1234090/argocd-portfolio-app
+  newTag: latest
+
+namespace: default
+
+commonLabels:
+  app: portfolio
+  managed-by: argocd

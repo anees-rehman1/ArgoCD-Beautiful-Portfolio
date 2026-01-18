@@ -1,0 +1,52 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: portfolio-app
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  project: default
+  
+  source:
+    repoURL: https://github.com/anees-rehman1/ArgoCD-Beautiful-Portfolio.git
+    targetRevision: main
+    path: k8s-manifests/
+    directory:
+      recurse: true
+  
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    retry:
+      limit: 3
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+    syncOptions:
+    - CreateNamespace=true
+    - ApplyOutOfSyncOnly=true
+    - PrunePropagationPolicy=foreground
+    - PruneLast=true
+  
+  ignoreDifferences:
+  - group: apps
+    kind: Deployment
+    jsonPointers:
+    - /spec/replicas
+    - /metadata/annotations
+  
+  info:
+  - name: Repository
+    value: https://github.com/anees-rehman1/ArgoCD-Beautiful-Portfolio
+  - name: Maintainer
+    value: anees-rehman1
+  - name: Docker Image
+    value: shadow1234090/argocd-portfolio-app
