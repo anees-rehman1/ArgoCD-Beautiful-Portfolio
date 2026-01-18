@@ -3,15 +3,15 @@ kind: Application
 metadata:
   name: portfolio-app
   namespace: argocd
-  annotations:
-    argocd.argoproj.io/sync-wave: "0"
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   
   source:
     repoURL: https://github.com/anees-rehman1/ArgoCD-Beautiful-Portfolio.git
     targetRevision: main
-    path: k8s-manifests/
+    path: k8s-manifests
     directory:
       recurse: true
   
@@ -25,7 +25,7 @@ spec:
       selfHeal: true
       allowEmpty: false
     retry:
-      limit: 3
+      limit: 5
       backoff:
         duration: 5s
         factor: 2
@@ -35,6 +35,7 @@ spec:
     - ApplyOutOfSyncOnly=true
     - PrunePropagationPolicy=foreground
     - PruneLast=true
+    - Validate=false
   
   ignoreDifferences:
   - group: apps
@@ -44,9 +45,9 @@ spec:
     - /metadata/annotations
   
   info:
-  - name: Repository
-    value: https://github.com/anees-rehman1/ArgoCD-Beautiful-Portfolio
-  - name: Maintainer
+  - name: GitHub
     value: anees-rehman1
-  - name: Docker Image
-    value: shadow1234090/argocd-portfolio-app
+  - name: Repository
+    value: ArgoCD-Beautiful-Portfolio
+  - name: Status
+    value: Active

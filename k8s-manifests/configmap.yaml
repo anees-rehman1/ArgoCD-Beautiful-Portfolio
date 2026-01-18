@@ -1,0 +1,275 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: website-content
+  namespace: default
+  labels:
+    app: portfolio
+    managed-by: argocd
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ArgoCD Portfolio | Success!</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+                color: #f8fafc;
+                min-height: 100vh;
+                line-height: 1.6;
+            }
+            
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+            
+            .navbar {
+                background: rgba(15, 23, 42, 0.95);
+                backdrop-filter: blur(10px);
+                padding: 1.5rem 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .navbar .container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .logo {
+                font-size: 1.8rem;
+                font-weight: bold;
+                background: linear-gradient(45deg, #6366f1, #8b5cf6);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            
+            .nav-links {
+                display: flex;
+                gap: 2rem;
+                list-style: none;
+            }
+            
+            .nav-links a {
+                color: #f8fafc;
+                text-decoration: none;
+                font-weight: 500;
+                transition: color 0.3s;
+            }
+            
+            .nav-links a:hover {
+                color: #6366f1;
+            }
+            
+            .hero {
+                padding: 120px 0 80px;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 3.5rem;
+                margin-bottom: 1rem;
+                background: linear-gradient(45deg, #6366f1, #8b5cf6);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+                color: #94a3b8;
+                max-width: 600px;
+                margin: 0 auto 2rem;
+            }
+            
+            .status-badge {
+                display: inline-block;
+                background: #10b981;
+                color: white;
+                padding: 0.5rem 1.5rem;
+                border-radius: 25px;
+                font-weight: 600;
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
+            
+            .info-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 2rem;
+                margin-top: 3rem;
+            }
+            
+            .info-card {
+                background: rgba(255, 255, 255, 0.05);
+                padding: 2rem;
+                border-radius: 10px;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .info-card h3 {
+                color: #6366f1;
+                margin-bottom: 1rem;
+                font-size: 1.3rem;
+            }
+            
+            .info-card p {
+                color: #cbd5e1;
+                margin-bottom: 1rem;
+            }
+            
+            .code {
+                background: #1e293b;
+                padding: 1rem;
+                border-radius: 5px;
+                font-family: 'Monaco', 'Courier New', monospace;
+                font-size: 0.9rem;
+                border-left: 4px solid #6366f1;
+            }
+            
+            footer {
+                margin-top: 4rem;
+                padding: 2rem 0;
+                text-align: center;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                color: #94a3b8;
+            }
+            
+            .tech-stack {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+                margin: 2rem 0;
+                flex-wrap: wrap;
+            }
+            
+            .tech-tag {
+                background: rgba(99, 102, 241, 0.1);
+                border: 1px solid #6366f1;
+                padding: 0.5rem 1rem;
+                border-radius: 20px;
+                font-size: 0.9rem;
+            }
+            
+            @media (max-width: 768px) {
+                .hero h1 {
+                    font-size: 2.5rem;
+                }
+                
+                .nav-links {
+                    display: none;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">🚀 ArgoCD Portfolio</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#status">Status</a></li>
+                    <li><a href="#info">Info</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="status-badge">✅ DEPLOYMENT SUCCESSFUL</div>
+                <h1>ArgoCD GitOps Demo</h1>
+                <p>This beautiful portfolio website is deployed using GitOps workflow with ArgoCD, Kubernetes, and GitHub Actions.</p>
+                
+                <div class="tech-stack">
+                    <span class="tech-tag">Kubernetes</span>
+                    <span class="tech-tag">ArgoCD</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">GitHub Actions</span>
+                    <span class="tech-tag">NGINX</span>
+                </div>
+                
+                <div class="info-grid" id="info">
+                    <div class="info-card">
+                        <h3>📦 Deployment Info</h3>
+                        <p><strong>Namespace:</strong> default</p>
+                        <p><strong>Pods:</strong> 2 replicas</p>
+                        <p><strong>Service:</strong> portfolio-service</p>
+                        <p><strong>Image:</strong> nginx:alpine</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>🔗 Repository Info</h3>
+                        <p><strong>GitHub:</strong> anees-rehman1</p>
+                        <p><strong>Repo:</strong> ArgoCD-Beautiful-Portfolio</p>
+                        <p><strong>Branch:</strong> main</p>
+                        <p><strong>Managed by:</strong> ArgoCD</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>📊 Current Status</h3>
+                        <p><strong>Sync Status:</strong> Synced</p>
+                        <p><strong>Health Status:</strong> Healthy</p>
+                        <p><strong>Last Sync:</strong> <span id="timestamp">Just now</span></p>
+                        <p><strong>Auto Sync:</strong> Enabled</p>
+                    </div>
+                </div>
+                
+                <div class="info-card" style="margin-top: 2rem;">
+                    <h3>📝 Deployment Manifest</h3>
+                    <pre class="code">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portfolio-app
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: portfolio
+  template:
+    metadata:
+      labels:
+        app: portfolio
+    spec:
+      containers:
+      - name: web
+        image: nginx:alpine
+        ports:
+        - containerPort: 80</pre>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <div class="container">
+                <p>🎯 Successfully deployed with GitOps using ArgoCD</p>
+                <p>👤 GitHub: <strong>anees-rehman1</strong> | 🐳 Docker Hub: <strong>shadow1234090</strong></p>
+                <p>⏰ Deployment Time: <span id="deploy-time">Loading...</span></p>
+            </div>
+        </footer>
+        
+        <script>
+            // Update timestamps
+            document.getElementById('deploy-time').textContent = new Date().toLocaleString();
+            document.getElementById('timestamp').textContent = new Date().toLocaleTimeString();
+            
+            // Auto-refresh every 30 seconds
+            setInterval(() => {
+                document.getElementById('timestamp').textContent = new Date().toLocaleTimeString();
+            }, 30000);
+            
+            console.log('ArgoCD Portfolio loaded successfully! 🚀');
+        </script>
+    </body>
+    </html>

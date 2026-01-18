@@ -1,17 +1,23 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+# List all resources in order
 resources:
+- configmap.yaml
 - deployment.yaml
 - service.yaml
 - ingress.yaml
 
-images:
-- name: shadow1234090/argocd-portfolio-app
-  newTag: latest
-
-namespace: default
-
+# Common labels for all resources
 commonLabels:
   app: portfolio
   managed-by: argocd
+
+# Namespace
+namespace: default
+
+# Images to use
+images:
+- name: nginx
+  newName: nginx
+  newTag: alpine
