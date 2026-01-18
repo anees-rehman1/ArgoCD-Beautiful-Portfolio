@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Portfolio | ArgoCD Demo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">🚀 ArgoCD Portfolio Made by Anees </h1>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Welcome to My <span class="highlight">ArgoCD</span> Demo</h2>
+                <p>A beautiful portfolio deployed using GitOps workflow</p>
+                <div class="tech-stack">
+                    <span class="tech-badge">Kubernetes</span>
+                    <span class="tech-badge">ArgoCD</span>
+                    <span class="tech-badge">Docker</span>
+                    <span class="tech-badge">GitHub Actions</span>
+                </div>
+                <a href="#projects" class="btn">View Projects</a>
+            </div>
+            <div class="hero-image">
+                <div class="code-window">
+                    <div class="window-header">
+                        <div class="window-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span class="window-title">deployment.yaml</span>
+                    </div>
+                    <pre class="code-content"><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portfolio-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: portfolio
+  template:
+    metadata:
+      labels:
+        app: portfolio
+    spec:
+      containers:
+      - name: portfolio
+        image: shadow1234090/argocd-portfolio-app
+        ports:
+        - containerPort: 80</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About This Project</h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <i class="fas fa-code"></i>
+                    <h3>GitOps Workflow</h3>
+                    <p>Automated deployments using ArgoCD and Git as the single source of truth</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-ship"></i>
+                    <h3>Containerized</h3>
+                    <p>Docker container built and pushed to Docker Hub automatically</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-rocket"></i>
+                    <h3>CI/CD Pipeline</h3>
+                    <p>GitHub Actions for building, testing, and deployment automation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2>Project Components</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>Website</h3>
+                    <p>Modern HTML/CSS portfolio website</p>
+                    <div class="project-status">
+                        <span class="status active">Active</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Docker Image</h3>
+                    <p>Containerized Nginx web server</p>
+                    <div class="project-status">
+                        <span class="status building">Building</span>
+                    </div>
+                </div>
+                <project-card>
+                    <h3>K8s Manifests</h3>
+                    <p>Deployment, Service, Ingress configs</p>
+                    <div class="project-status">
+                        <span class="status pending">Pending</span>
+                    </div>
+                </project-card>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Deployed with ❤️ using ArgoCD | GitHub: <strong>anees-rehman1</strong></p>
+            <p class="footer-info">Image: shadow1234090/argocd-portfolio-app</p>
+        </div>
+    </footer>
+
+    <script src="src/script.js"></script>
+</body>
+</html>
